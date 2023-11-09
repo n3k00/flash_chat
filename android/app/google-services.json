@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "661245169757",
+    "project_id": "flashchat-d2f55",
+    "storage_bucket": "flashchat-d2f55.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661245169757:android:c619ac5034517a48e33db4",
+        "android_client_info": {
+          "package_name": "com.shinthant.flash_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBohyKPR8T7G-aT6m2zQTTfcJSNMYhY4Cw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
