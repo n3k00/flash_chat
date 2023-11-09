@@ -8,9 +8,10 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SignupPage extends StatelessWidget {
   static const String id = "/Signup";
-  final SignupController signupController = Get.put(SignupController());
+
   @override
   Widget build(BuildContext context) {
+    final SignupController signupController = Get.put(SignupController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Obx(() {

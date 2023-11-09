@@ -1,7 +1,9 @@
+import 'package:flash_chat/controllers/login_controller.dart';
 import 'package:flash_chat/resources/constants.dart';
 import 'package:flash_chat/resources/dimens.dart';
 import 'package:flash_chat/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginPage extends StatelessWidget {
@@ -9,6 +11,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final LoginController loginController = Get.put(LoginController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: ModalProgressHUD(
@@ -22,60 +25,42 @@ class LoginPage extends StatelessWidget {
               Hero(
                 tag: "logo",
                 child: SizedBox(
-                  height: 200.0,
+                  height: LOGIN_AND_SIGNUP_LOGO_HEIGHT,
                   child: Image.asset('assets/images/logo.png'),
                 ),
               ),
               SizedBox(
-                height: 48.0,
+                height: MARGIN_XXLARGE,
               ),
               TextField(
+                controller: loginController.emailController,
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
-                onChanged: (value) {
-                  /*email = value;*/
-                },
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter your email",
                 ),
               ),
               SizedBox(
-                height: 8.0,
+                height: MARGIN_MEDIUM,
               ),
               TextField(
+                controller: loginController.passwordController,
                 obscureText: true,
                 textAlign: TextAlign.center,
-                onChanged: (value) {
-                  /*password = value;*/
-                },
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: "Enter your password",
                 ),
               ),
               SizedBox(
-                height: 24.0,
+                height: MARGIN_LARGE,
               ),
               RoundedButton(
-                  btnColor: Colors.lightBlueAccent,
-                  btnText: "Log In",
-                  btnPress: () async {
-                    /*print(email);
-                    print(password);*/
-                    /*setState(() {
-                      showSpinner = true;
-                    });*/
-                    /*try {
-                      var user = await _auth.signInWithEmailAndPassword(
-                          email: email!, password: password!);
-                      Navigator.pushNamedAndRemoveUntil(context, ChatScreen.id,
-                          (Route<dynamic> route) => false);
-                      setState(() {
-                        showSpinner = false;
-                      });
-                    } catch (e) {
-                      print(e);
-                    }*/
-                  }),
+                btnColor: Colors.lightBlueAccent,
+                btnText: "Log In",
+                btnPress: () async {
+                  loginController.loginAccount();
+                },
+              ),
             ],
           ),
         ),
