@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat/views/display_name_page.dart';
 import 'package:flash_chat/views/home_page.dart';
 import 'package:flash_chat/views/login_page.dart';
 import 'package:flash_chat/views/signup_page.dart';
@@ -28,12 +29,15 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: FirebaseAuth.instance.currentUser == null
           ? WelcomePage.id
-          : HomePage.id,
+          : FirebaseAuth.instance.currentUser!.displayName == ''
+              ? DisplayNamePage.id
+              : HomePage.id,
       getPages: [
         GetPage(name: WelcomePage.id, page: () => WelcomePage()),
         GetPage(name: LoginPage.id, page: () => LoginPage()),
         GetPage(name: SignupPage.id, page: () => SignupPage()),
         GetPage(name: HomePage.id, page: () => HomePage()),
+        GetPage(name: DisplayNamePage.id, page: () => DisplayNamePage()),
       ],
     );
   }

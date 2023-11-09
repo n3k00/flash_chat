@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flash_chat/views/display_name_page.dart';
 import 'package:flash_chat/views/home_page.dart';
 import 'package:flash_chat/widgets/show_alert_dialog.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,11 @@ class LoginController extends GetxController {
       );
       showSpinner(false);
       if (credential.user!.emailVerified) {
-        Get.offAllNamed(HomePage.id);
+        if (credential.user!.displayName != null) {
+          Get.offAllNamed(HomePage.id);
+        } else {
+          Get.offAllNamed(DisplayNamePage.id);
+        }
       } else {
         Get.dialog(ShowAlertDialog(
           title: "Verify email!",
