@@ -18,3 +18,4 @@ const TEXT_BIG = 32.0;
 
 ///App Specific Dimensions
 const WELCOM_SCREEN_LOGI_HEIGHT = 60.0;
+const LOGIN_AND_SIGNUP_LOGO_HEIGHT = 200.0;

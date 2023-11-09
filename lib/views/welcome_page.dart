@@ -3,6 +3,7 @@ import 'package:flash_chat/views/login_page.dart';
 import 'package:flash_chat/views/signup_page.dart';
 import 'package:flash_chat/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class WelcomePage extends StatelessWidget {
   static const String id = "/welcome";
@@ -36,13 +37,13 @@ class WelcomePage extends StatelessWidget {
                 btnColor: Colors.lightBlueAccent,
                 btnText: "Log In",
                 btnPress: () {
-                  Navigator.pushNamed(context, LoginPage.id);
+                  Get.toNamed(LoginPage.id);
                 }),
             RoundedButton(
                 btnColor: Colors.blueAccent,
                 btnText: "Sign Up",
                 btnPress: () {
-                  Navigator.pushNamed(context, SignupPage.id);
+                  Get.toNamed(SignupPage.id);
                 }),
           ],
         ),
