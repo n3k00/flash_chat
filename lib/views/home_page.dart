@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flash_chat/controllers/home_controller.dart';
+import 'package:flash_chat/resources/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,14 +24,40 @@ class HomePage extends StatelessWidget {
           icon: Icon(Icons.logout),
         ),
       ),
-      body: Center(
-        child: Text("${FirebaseAuth.instance.currentUser!.displayName}"),
+      body: SafeArea(
+        child: Column(
+          children: [
+            MessagesStream(),
+            Container(
+              decoration: kMessageContainerDecoration,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: homeController.messageTextController,
+                      decoration: kMessageTextFieldDecoration,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      homeController.sendMessage();
+                    },
+                    child: Text(
+                      "Send",
+                      style: kSendButtonTextStyle,
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
 }
 
-/*
 class MessagesStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -50,11 +77,12 @@ class MessagesStream extends StatelessWidget {
           for (var message in messages!) {
             final messageText = message['text'];
             final messageSender = message['sender'];
+            final messageSenderEmail = message['sender_email'];
             final currentUser = FirebaseAuth.instance.currentUser?.email;
             final messageBubble = MessageBubble(
               sender: messageSender,
               text: messageText,
-              isMe: currentUser == messageSender,
+              isMe: currentUser == messageSenderEmail,
             );
             messageBubbles.add(messageBubble);
           }
@@ -121,4 +149,3 @@ class MessageBubble extends StatelessWidget {
     );
   }
 }
-*/
